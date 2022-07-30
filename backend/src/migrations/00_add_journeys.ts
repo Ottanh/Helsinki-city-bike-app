@@ -5,7 +5,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 const { getValidatedData } = require('../util/data');
-const { DataTypes } = require('sequelize');
+const { DataTypes }  = require('sequelize');
 
 module.exports = {
   up: async ({ context: queryInterface }: any) => {
@@ -60,3 +60,5 @@ module.exports = {
     await queryInterface.dropTable('journeys');
   }
 };
+
+export {};

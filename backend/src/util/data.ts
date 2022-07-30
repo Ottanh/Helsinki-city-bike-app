@@ -93,6 +93,28 @@ export const getValidatedData = async () => {
 };
 
 
+/**
+ * Reads all .csv files from working directory and converts them to JSON array.
+ * 
+ * @returns Array containing station objects
+ */
+export const getStationData = async () => {
+  let files = fs.readdirSync('.');
+  files = files.filter( file => file.match(new RegExp(`.*.csv`, 'ig')));
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let data: any[] = [];
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    console.log(file);
+    const csv = await readFile(file);
+    data = data.concat(Papa.parse(csv, { header: true, dynamicTyping: true, skipEmptyLines: true }).data);
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return data;
+};
+
 
 
   
