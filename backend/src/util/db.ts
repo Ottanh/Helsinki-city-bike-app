@@ -8,13 +8,13 @@ export const sequelize = new Sequelize(DATABASE_URL, {
       require: true,
       rejectUnauthorized: false
     }
-  },
+  }
 });
 
 const runMigrations = async () => {  
   const migrator = new Umzug({    
     migrations: {      
-      glob: 'src/migrations/*.js',    
+      glob: 'src/migrations/*.ts',    
     },    
     storage: new SequelizeStorage({ sequelize, tableName: 'migrations' }),    
     context: sequelize.getQueryInterface(),    
