@@ -3,8 +3,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-const { getStationData } = require('../util/data');
 const { DataTypes } = require('sequelize');
 
 module.exports = {
@@ -64,8 +62,6 @@ module.exports = {
         allowNull: false,
       },
     });
-    const data = await getStationData();
-    return await queryInterface.bulkInsert('stations', data, { logging: false });
   },
   down: async ({ context: queryInterface }: any) => {
     await queryInterface.dropTable('stations');

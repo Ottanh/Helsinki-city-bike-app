@@ -1,26 +1,26 @@
-import { DataTypes } from 'sequelize';
+import { 
+  CreationOptional, 
+  DataTypes, 
+  ForeignKey, 
+  InferAttributes, 
+  InferCreationAttributes,
+  Model 
+} from 'sequelize';
 import { sequelize } from '../util/db';
-import {Column, Model, Table,} from 'sequelize-typescript';
+import Station from './station';
 
 
-@Table
-class Journey extends Model {
-  @Column
-  departure!: Date;
-  @Column
-  return!: Date;
-  @Column
-  departureStationId!: number;
-  @Column
-  departureStationName!: string;
-  @Column
-  returnStationId!: number;
-  @Column
-  returnStationName!: string;
-  @Column
-  coveredDistance!: number;
-  @Column
-  duration!: number;
+
+class Journey extends Model<InferAttributes<Journey>, InferCreationAttributes<Journey>> {
+  declare id: CreationOptional<number>;
+  declare departure: Date;
+  declare return: Date;
+  declare departureStationId: ForeignKey<Station['id']>;
+  declare departureStationName: string;
+  declare returnStationId: ForeignKey<Station['id']>;
+  declare returnStationName: string;
+  declare coveredDistance: number;
+  declare duration: number;
 }
 
 Journey.init({
@@ -51,16 +51,8 @@ Journey.init({
       }
     },
   },
-  departureStationId: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   departureStationName: {
     type: DataTypes.TEXT,
-    allowNull: false
-  },
-  returnStationId: {
-    type: DataTypes.INTEGER,
     allowNull: false
   },
   returnStationName: {

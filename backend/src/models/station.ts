@@ -1,36 +1,25 @@
-import { DataTypes } from 'sequelize';
+import { 
+  DataTypes, InferAttributes, 
+  InferCreationAttributes, 
+  Model 
+} from 'sequelize';
 import { sequelize } from '../util/db';
-import {Column, Model, Table,} from 'sequelize-typescript';
 
 
-@Table
-class Station extends Model {
-  @Column
-  fid!: number;
-  @Column
-  id!: number;
-  @Column
-  nimi!: string;
-  @Column
-  namn!: string;
-  @Column
-  name!: string;
-  @Column
-  osoite!: string;
-  @Column
-  adress!: string;
-  @Column
-  kaupunki?: string;
-  @Column
-  stad?: string;
-  @Column
-  operaattor?: string;
-  @Column
-  kapasiteet!: string;
-  @Column
-  x!: number;
-  @Column
-  y!: number;
+class Station extends Model<InferAttributes<Station>, InferCreationAttributes<Station>> {
+  declare id: number;
+  declare fid: number;
+  declare nimi: string;
+  declare namn: string;
+  declare name: string;
+  declare osoite: string;
+  declare adress: string;
+  declare kaupunki: string | null;
+  declare stad: string | null;
+  declare operaattor: string | null;
+  declare kapasiteet: string;
+  declare x: number;
+  declare y: number;
 }
 
 Station.init({

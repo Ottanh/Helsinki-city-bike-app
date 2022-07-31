@@ -1,17 +1,16 @@
 import express from 'express';
 import { connectToDatabase } from './util/db';
+import { PORT } from './util/config';
+import './models/relationships';
+
 
 const app = express();
 app.use(express.json());
-
-const PORT = 3000;
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here');
   res.send('pong');
 });
-
-
 
 
 

@@ -3,8 +3,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
-const { getValidatedData } = require('../util/data');
 const { DataTypes }  = require('sequelize');
 
 module.exports = {
@@ -23,23 +21,23 @@ module.exports = {
         type: DataTypes.DATE,
         allowNull: false,
       },
-      departureStationId: {
+      departure_station_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      departureStationName: {
+      departure_station_name: {
         type: DataTypes.TEXT,
         allowNull: false
       },
-      returnStationId: {
+      return_station_id: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      returnStationName: {
+      return_station_name: {
         type: DataTypes.TEXT,
         allowNull: false
       },
-      coveredDistance: {
+      covered_distance: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -48,13 +46,6 @@ module.exports = {
         allowNull: false,
       },
     });
-    const data = await getValidatedData();
-    let lastQuery;
-    for (let i = 0; i < data.length; i += 100000) {
-      const chunk = data.slice(i, i + 100000);
-      lastQuery = await queryInterface.bulkInsert('journeys', chunk, { logging: false });
-    }
-    return lastQuery;
   },
   down: async ({ context: queryInterface }: any) => {
     await queryInterface.dropTable('journeys');
