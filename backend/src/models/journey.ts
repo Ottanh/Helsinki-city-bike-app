@@ -16,9 +16,7 @@ class Journey extends Model<InferAttributes<Journey>, InferCreationAttributes<Jo
   declare departure: Date;
   declare return: Date;
   declare departureStationId: ForeignKey<Station['id']>;
-  declare departureStationName: string;
   declare returnStationId: ForeignKey<Station['id']>;
-  declare returnStationName: string;
   declare coveredDistance: number;
   declare duration: number;
 }
@@ -50,14 +48,6 @@ Journey.init({
         }
       }
     },
-  },
-  departureStationName: {
-    type: DataTypes.TEXT,
-    allowNull: false
-  },
-  returnStationName: {
-    type: DataTypes.TEXT,
-    allowNull: false
   },
   coveredDistance: {
     type: DataTypes.INTEGER,
