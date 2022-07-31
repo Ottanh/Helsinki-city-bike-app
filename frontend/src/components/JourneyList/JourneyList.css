@@ -1,7 +1,30 @@
 .Journey-list {
+  table-layout: fixed;
   border-collapse: collapse;
   border: 1px solid rgb(0, 0, 0);
   width: 55rem;
+}
+
+thead th:nth-child(1) {
+  width: 7%;
+}
+thead th:nth-child(2) {
+  width: 17%;
+}
+thead th:nth-child(3) {
+  width: 22.5%;
+}
+thead th:nth-child(4) {
+  width: 17%;
+}
+thead th:nth-child(5) {
+  width: 22.5%;
+}
+thead th:nth-child(6) {
+  width: 7%;
+}
+thead th:nth-child(7) {
+  width: 7%;
 }
 
 .Header-row {
@@ -13,3 +36,27 @@ th {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
+.Page-count {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.Page-controls {
+  margin-top: 1rem;
+}
+
+button {
+  background: whitesmoke;
+  border: 1px solid rgba(108, 123, 149, 0.5);
+  padding: 0.2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 5px;
+  font-size: large;
+}
+
+button:hover {
+  background: rgb(216, 216, 216);
+}
+
