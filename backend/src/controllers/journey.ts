@@ -3,8 +3,22 @@ import express from 'express';
 import Journey from '../models/journey';
 const router = express.Router();
 
-router.get('/', async (_req, res) => {
-  const journeys = await Journey.findAll({});
+const getPagination = (page: number, size: number) => {
+  const limit = size ? size : 3;
+  const offset = page ? page * limit : 0;
+  return { limit, offset };
+};
+
+
+router.get('/', async (req, res) => {
+  const page = parseInt(req.query.page as string);
+  const size = parseInt(req.query.size as string);
+  const { limit, offset } = getPagination(page, size);
+
+  const journeys = await Journey.findAll({
+    limit,
+    offset
+  });
   res.json(journeys);
 });
 
