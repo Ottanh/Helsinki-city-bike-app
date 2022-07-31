@@ -75,6 +75,7 @@ Journey.init({
   },
 }, {
   sequelize,
+  timestamps: false,
   underscored: true,
   modelName: 'journey',
 });
