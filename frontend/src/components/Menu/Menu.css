@@ -1,0 +1,15 @@
+.Menu {
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+.Journey-link, .Station-link {
+  text-decoration: none;
+  color: black;
+  font-size: xx-large;
+  margin: 1rem;
+}
+
+.Journey-link:hover, .Station-link:hover {
+  text-decoration: underline;
+}
