@@ -50,7 +50,7 @@ module.exports = {
         allowNull: true,
       },
       kapasiteet: {
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       x: {

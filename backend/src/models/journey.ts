@@ -13,8 +13,8 @@ import Station from './station';
 
 class Journey extends Model<InferAttributes<Journey>, InferCreationAttributes<Journey>> {
   declare id: CreationOptional<number>;
-  declare departure: Date;
-  declare return: Date;
+  declare departure: string;
+  declare return: string;
   declare departureStationId: ForeignKey<Station['id']>;
   declare returnStationId: ForeignKey<Station['id']>;
   declare coveredDistance: number;

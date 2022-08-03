@@ -1,149 +1,122 @@
 import fs from 'fs';
 import Papa from 'papaparse';
+import { JourneyInterface } from '../interfaces/journey';
+import { StationInterface } from '../interfaces/station';
+import { JourneyArray } from '../schemas/journey';
+import { StationArray } from '../schemas/station';
 
-interface JourneySchema {
-  departure: string;
-  return: string;
-  departure_station_id: number;
-  departure_station_name: string;
-  return_station_id: number;
-  return_station_name: string;
-  covered_distance: number;
-  duration: number;        
-}
+const readFile = async (fileName: string, type: 'station' | 'journey') => {
+  let path: string;
+  let headers: string;
+  if(type === 'station'){
+    path = `./data/stations/${fileName}`;
+    headers = 'fid,id,nimi,namn,name,osoite,adress,kaupunki,stad,operaattor,kapasiteet,x,y';
+  } else {
+    path = `./data/journeys/${fileName}`;
+    headers = 'departure,return,departure_station_id,departure_station_name,return_station_id,return_station_name,covered_distance,duration';
+  }
 
-interface StationSchema {
-  id: number;
-  fid: number;
-  nimi: string;
-  namn: string;
-  name: string;
-  osoite: string;
-  adress: string;
-  kaupunki: string | null;
-  stad: string | null;
-  operaattor: string | null;
-  kapasiteet: string;
-  x: number;
-  y: number;
-}
-
-const readFile = async (fileName: string) => {
   return new Promise<string>(resolve => {
-    fs.readFile(`./${fileName}`, 'utf8', (err, data) => {
+    fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
         console.error(err);
         return;
       }
-      if (data.charCodeAt(0) === 0xFEFF) {
-        resolve(data.slice(1));
-      }
-      resolve(data);
+      const lines = data.split('\n');
+      lines.splice(0,1);
+      lines.unshift(headers);
+      resolve(lines.join('\n'));
     });
   });
 };
 
+
 /**
- * Reads all .station.csv files from working directory and converts them to JSON array.
+ * Reads all .station.csv files from working directory and converts them to JSON array,
+ * which is then validated by StationSchema.
  * 
  * @returns Array containing station objects
  */
  export const getStationData = async () => {
-  let files = fs.readdirSync('.');
-  files = files.filter( file => file.match(new RegExp(`.*.stations.csv`, 'ig')));
+  console.log('Fetching station data');
+  let files = fs.readdirSync('./data/stations');
+  files = files.filter(file => file.match(new RegExp(`.*.csv`, 'ig')));
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let data: any[] = [];
+  let data: unknown[] = [];
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     console.log(file);
-    const csv = await readFile(file);
+    const csv = await readFile(file, 'station');
     data = data.concat(Papa.parse(csv, { header: true, dynamicTyping: true, skipEmptyLines: true }).data);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return data;
+  let validatedData: StationInterface[] = [];
+  for (let i = 0; i < data.length; i += 10000) {
+    process.stdout.write(`Validating... [${(i/data.length*100).toFixed(1)}%]\r`);
+    const chunk = data.slice(i, i + 10000);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { error, value } = StationArray.validate(
+      chunk,
+      {
+        stripUnknown: { arrays: true, objects: true }
+      }
+    );
+    if(error) {
+      console.log(error);
+    }
+    validatedData = validatedData.concat(value as StationInterface[]);
+  }
+  process.stdout.write('');
+  console.log('Validation complete');
+  return validatedData;
 };
 
 
 /**
- * Reads all .csv files from working directory, converts them to JSON array and validates the data.
+ * Reads all .csv files from working directory and converts them to JSON array,
+ * which is then validated by JourneySchema.
  * 
- * @param stations Station ids used to validate journey data
+ * @param stations Used to validate journey data
  * @returns Array containing validated journey objects
  */
-export const getJourneyData = async (stations: StationSchema[]) => {
-
+export const getJourneyData = async (stations: StationInterface[]) => {
+  console.log('Fetching journey data');
   const initial: number[] = [];
   const stationsIds = stations.reduce((total, current) => {
     return total.concat(current.id);
   }, initial);
 
-  console.log(stationsIds);
-
-  let files = fs.readdirSync('.');
+  let files = fs.readdirSync('./data/journeys');
   files = files.filter( file => file.match(new RegExp(`.*.csv`, 'ig')));
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let data: any[] = [];
+  let data: unknown[] = [];
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
     console.log(file);
-    const csv = await readFile(file);
+    const csv = await readFile(file, 'journey');
     data = data.concat(Papa.parse(csv, { header: true, dynamicTyping: true }).data);
   }
 
-  console.log(data.length);
-
-  const validatedData = data.filter(row => {
-    if(!row.departure || !(typeof row.departure === 'string')){
-      return false;
-    }
-    if(!row.return || !(typeof row.return === 'string')){
-      return false;
-    }
-    if(row.departure_station_id === undefined 
-      || row.departure_station_id === null 
-      || !(typeof row.departure_station_id === 'number')
-      || !stationsIds.includes(row.departure_station_id as number)
-    ){
-      return false;
-    }
-    if(!row.departure_station_name 
-      || !(typeof row.departure_station_name === 'string')
-    ){
-      return false;
-    }
-    if(row.return_station_id === undefined 
-      || row.return_station_id === null 
-      || !(typeof row.return_station_id === 'number')
-      || !stationsIds.includes(row.return_station_id as number)
-    ){
-      return false;
-    }
-    if(!row.return_station_name || !(typeof row.return_station_name === 'string')){
-      return false;
-    }
-    if(row.covered_distance === undefined 
-      || row.covered_distance === null 
-      || !(typeof row.covered_distance === 'number') 
-      || row.covered_distance < 10
-    ){
-      return false;
-    }
-    if(row.duration === undefined 
-      || row.duration === null 
-      || !(typeof row.duration === 'number') 
-      || row.duration < 10
-    ){
-      return false;
-    }
-    return true;
-  }) as JourneySchema[];
-
-  console.log(validatedData.length);
-
-  return validatedData;
+  let validatedData: JourneyInterface[] = [];
+  for (let i = 0; i < data.length; i += 10000) {
+    process.stdout.write(`Validating... [${(i/data.length*100).toFixed(1)}%]\r`);
+    const chunk = data.slice(i, i + 10000);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const { error, value } = JourneyArray.validate(
+      chunk, 
+      { 
+        context: { stations: stationsIds },
+        stripUnknown: { arrays: true, objects: true }
+      }
+    );
+    if(error) {
+      console.log(error.message);
+    } 
+    validatedData = validatedData.concat(value as JourneyInterface[]);
+  }
+  process.stdout.write('');
+  console.log('Validation complete');
+  return validatedData;   
 };
 
 

@@ -25,16 +25,8 @@ module.exports = {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      departure_station_name: {
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
       return_station_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      return_station_name: {
-        type: DataTypes.TEXT,
         allowNull: false
       },
       covered_distance: {

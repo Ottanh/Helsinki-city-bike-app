@@ -17,7 +17,7 @@ class Station extends Model<InferAttributes<Station>, InferCreationAttributes<St
   declare kaupunki: string | null;
   declare stad: string | null;
   declare operaattor: string | null;
-  declare kapasiteet: string;
+  declare kapasiteet: number;
   declare x: number;
   declare y: number;
 }
@@ -65,8 +65,11 @@ Station.init({
     allowNull: true,
   },
   kapasiteet: {
-    type: DataTypes.TEXT,
+    type: DataTypes.INTEGER,
     allowNull: false,
+    validate: {
+      min: 0
+    }
   },
   x: {
     type: DataTypes.FLOAT,
