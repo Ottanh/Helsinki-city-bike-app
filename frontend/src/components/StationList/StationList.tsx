@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Journey as JourneyType } from "../../types";
-import Journey from "../Journey/Journey";
+import { Station as StationType } from "../../types";
+import Station from "../Station/Station";
 
-const JourneyList = () => {
-  const [journeys, setJourneys] = useState([]);
+
+const StationList = () => {
+  const [stations, setStations] = useState([]);
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/journey?page=${page}&size=10`)
+    axios.get(`http://localhost:3001/api/station?page=${page}&size=10`)
       .then((res => {
-        setJourneys(res.data);
+        setStations(res.data);
       }))
   },[page])
 
@@ -26,20 +27,19 @@ const JourneyList = () => {
 
   return (
     <>
-      <table className="Journey-list">
+      <table className="Station-list">
         <thead>
           <tr className="Header-row">
             <th>ID</th>
-            <th>Departure</th>
-            <th>Departure station</th>
-            <th>Return</th>
-            <th>Return station</th>
-            <th>Covered distance</th>
-            <th>Duration</th>
+            <th>FID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Operator</th>
           </tr>
         </thead>
-        {journeys.map((journey: JourneyType) => (
-          <Journey key={journey.id} journey={journey} />
+        {stations.map((station: StationType) => (
+          <Station key={station.id} station={station} />
         ))}
       </table>
       <div className="Page-controls">
@@ -51,4 +51,4 @@ const JourneyList = () => {
   );
 }
 
-export default JourneyList;
+export default StationList;

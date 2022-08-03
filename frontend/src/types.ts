@@ -15,7 +15,7 @@ export interface Station {
   namn: string;
   name: string;
   osoite: string;
-  adress: string;
+  address: string;
   kaupunki: string | null;
   stad: string | null;
   operaattor: string | null;
