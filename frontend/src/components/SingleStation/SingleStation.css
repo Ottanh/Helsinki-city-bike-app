@@ -1,11 +1,50 @@
 .Single-station {
   display: flex;
-  align-items: center;
   flex-direction: column;
-  font-size: xx-large;
+  align-items: center;
   min-width: 50%;
+  font-size: x-large;
+  max-width: 1200px;
 }
 
 #Station-name {
-  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: xx-large;
 }
+
+.Upper-row, .Bottom-row {
+  display: flex;
+  width: 100%;
+  min-height: 300px;
+}
+
+.Starts, .Ends {
+  width: 50%;
+  padding: 1rem;
+}
+
+.Stats {
+  padding: 1rem;
+  width: 50%;
+}
+
+.Map {
+  padding: 1rem;
+  width: 50%;
+}
+
+
+td {
+  text-align: center;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.Stats-row {
+  border: 1px solid;
+  border-color: rgba(108, 123, 149, 0.5);
+  height: 3rem;
+}
+
+.Stats-row:nth-child(odd) {background: whitesmoke}

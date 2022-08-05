@@ -5,10 +5,21 @@ td {
   padding-right: 10px;
 }
 
-tr {
+th {
+  text-align: center;
+  padding: 10px;
+}
+
+.Station-row {
   border: 1px solid;
   border-color: rgba(108, 123, 149, 0.5);
   height: 3rem;
 }
 
-tr:nth-child(odd) {background: whitesmoke}
+.Header-row {
+  border: 1px solid;
+  border-color: rgba(108, 123, 149, 0.5);
+  height: 3rem;
+}
+
+.Station-row:nth-child(odd) {background: whitesmoke}

@@ -8,11 +8,13 @@ h1 {
   font-size: xxx-large;
 }
 
-.Journey-list, .Station-list {
+table {
   table-layout: fixed;
   border-collapse: collapse;
   border: 1px solid rgb(0, 0, 0);
   min-width: 50%;
+  font-size: large;
+  margin: 1rem;
 }
 
 .Page-count {

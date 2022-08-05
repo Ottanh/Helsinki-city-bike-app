@@ -7,7 +7,7 @@ interface Props {
 
 const Station = ({ station }: Props) => {
   return (
-    <tr>
+    <tr className="Station-row">
       <td>{station.id}</td>
       <td>{station.fid}</td>
       <td>{station.name}</td>

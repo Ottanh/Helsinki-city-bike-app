@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const journey = await Journey.findByPk(req.params.id, {
+    raw: true,
     include: [
       {
         model: Station,

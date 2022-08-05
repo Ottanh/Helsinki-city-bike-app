@@ -7,7 +7,7 @@ interface Props {
 
 const Journey = ({ journey }: Props) => {
   return (
-    <tr>
+    <tr className="Journey-row">
       <td>{journey.id}</td>
       <td>{new Date(journey.departure).toLocaleString()}</td>
       <td>{journey.departureStation.name}</td>

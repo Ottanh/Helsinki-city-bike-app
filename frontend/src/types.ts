@@ -22,4 +22,6 @@ export interface StationInterface {
   kapasiteet: string;
   x: number;
   y: number;
+  n_starts: number;
+  n_ends: number;
 }
