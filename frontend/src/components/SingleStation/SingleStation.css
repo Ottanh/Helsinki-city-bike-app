@@ -1,0 +1,11 @@
+.Single-station {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: xx-large;
+  min-width: 50%;
+}
+
+#Station-name {
+  margin-bottom: 0.5rem;
+}
