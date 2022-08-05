@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Station as StationType } from "../../types";
-import Station from "../Station/Station";
+import { StationInterface } from "../../types";
+import Station from "./Station";
 
 
 const StationList = () => {
@@ -38,7 +38,7 @@ const StationList = () => {
             <th>Operator</th>
           </tr>
         </thead>
-        {stations.map((station: StationType) => (
+        {stations.map((station: StationInterface) => (
           <Station key={station.id} station={station} />
         ))}
       </table>

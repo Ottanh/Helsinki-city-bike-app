@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Station as StationType } from "../../types";
+import { StationInterface } from "../../types";
 import { useParams } from "react-router-dom";
 import './SingleStation.css';
 
 
 const SingleStation = () => {
   const { id } = useParams();
-  const [station, setStation] = useState<StationType>();
+  const [station, setStation] = useState<StationInterface>();
   useEffect(() => {
     axios.get(`http://localhost:3001/api/station/${id}`)
       .then((res => {

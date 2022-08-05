@@ -1,14 +1,14 @@
-export interface Journey {
+export interface JourneyInterface {
     id: number;
     departure: string;
     return: string;
-    departureStation: Station;
-    returnStation: Station;
+    departureStation: StationInterface;
+    returnStation: StationInterface;
     coveredDistance: number;
     duration: number;        
 }
 
-export interface Station {
+export interface StationInterface {
   id: number;
   fid: number;
   nimi: string;

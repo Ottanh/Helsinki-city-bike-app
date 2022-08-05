@@ -1,8 +1,8 @@
-import { Station as StationType } from "../../types";
+import { StationInterface } from "../../types";
 import './Station.css';
 
 interface Props {
-  station: StationType
+  station: StationInterface
 }
 
 const Station = ({ station }: Props) => {

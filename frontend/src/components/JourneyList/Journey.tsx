@@ -1,8 +1,8 @@
-import { Journey as JourneyType } from "../../types";
+import { JourneyInterface } from "../../types";
 import './Journey.css';
 
 interface Props {
-  journey: JourneyType
+  journey: JourneyInterface
 }
 
 const Journey = ({ journey }: Props) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Journey as JourneyType } from "../../types";
-import Journey from "../Journey/Journey";
+import { JourneyInterface } from "../../types";
+import Journey from "./Journey";
 
 const JourneyList = () => {
   const [journeys, setJourneys] = useState([]);
@@ -38,7 +38,7 @@ const JourneyList = () => {
             <th>Duration</th>
           </tr>
         </thead>
-        {journeys.map((journey: JourneyType) => (
+        {journeys.map((journey: JourneyInterface) => (
           <Journey key={journey.id} journey={journey} />
         ))}
       </table>
