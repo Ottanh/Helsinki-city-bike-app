@@ -33,22 +33,24 @@ const SingleStation = () => {
         <span id="Station-name">{station.name}</span>
         <div className="Upper-row">
           <table className="Stats">
-            <tr className="Stats-row">
-              <td>Journeys started</td>
-              <td>{station.n_started}</td>
-            </tr>
-            <tr className="Stats-row">
-              <td>Journeys finished</td>
-              <td>{station.n_finished}</td>
-            </tr>
-            <tr className="Stats-row">
-              <td>Average distance of jounrey starting at station</td>
-              <td>{Math.round(station.avg_journey_started)}</td>
-            </tr>
-            <tr className="Stats-row">
-              <td>Average distance of jounrey ending at station</td>
-              <td>{Math.round(station.avg_journey_finished)}</td>
-            </tr>
+            <tbody>
+              <tr className="Stats-row">
+                <td>Journeys started</td>
+                <td>{station.n_started}</td>
+              </tr>
+              <tr className="Stats-row">
+                <td>Journeys finished</td>
+                <td>{station.n_finished}</td>
+              </tr>
+              <tr className="Stats-row">
+                <td>Average distance of jounrey starting at station</td>
+                <td>{Math.round(station.avg_journey_started)}</td>
+              </tr>
+              <tr className="Stats-row">
+                <td>Average distance of jounrey ending at station</td>
+                <td>{Math.round(station.avg_journey_finished)}</td>
+              </tr>
+            </tbody>
           </table>
           <div className="Map">
             <iframe

@@ -38,9 +38,11 @@ const StationList = () => {
             <th>Operator</th>
           </tr>
         </thead>
-        {stations.map((station: StationInterface) => (
-          <Station key={station.id} station={station} />
-        ))}
+        <tbody>
+          {stations.map((station: StationInterface) => (
+            <Station key={station.id} station={station} />
+          ))}
+        </tbody>
       </table>
       <div className="Page-controls">
         <button onClick={previous}>prev</button>

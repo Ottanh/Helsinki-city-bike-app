@@ -38,9 +38,11 @@ const JourneyList = () => {
             <th>Duration</th>
           </tr>
         </thead>
-        {journeys.map((journey: JourneyInterface) => (
-          <Journey key={journey.id} journey={journey} />
-        ))}
+        <tbody>
+          {journeys.map((journey: JourneyInterface) => (
+            <Journey key={journey.id} journey={journey} />
+          ))}
+        </tbody>
       </table>
       <div className="Page-controls">
         <button onClick={previous}>prev</button>
