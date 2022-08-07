@@ -22,6 +22,8 @@ export interface StationInterface {
   kapasiteet: string;
   x: number;
   y: number;
-  n_starts: number;
-  n_ends: number;
+  n_finished: number;
+  n_started: number;
+  avg_journey_started: number;
+  avg_journey_finished: number;
 }

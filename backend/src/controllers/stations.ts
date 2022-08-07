@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import express from 'express';
+import sequelize from 'sequelize';
 import Journey from '../models/journey';
 import Station from '../models/station';
 const router = express.Router();
@@ -24,11 +25,17 @@ router.get('/:id', async (req, res) => {
     res.status(404).end();
   }
 
-  const n_starts = await Journey.count({ col: '*', where: { departureStationId: req.params.id }})
-  const n_ends = await Journey.count({ col: '*', where: { returnStationId: req.params.id }})
+  const stats = await Journey.findOne({
+    raw: true,
+    attributes: [
+      [sequelize.literal(`AVG(CASE WHEN departure_station_id = ${req.params.id} THEN covered_distance END)`), 'avg_journey_started'],
+      [sequelize.literal(`COUNT(CASE WHEN departure_station_id = ${req.params.id} THEN 1 END)`), 'n_started'],
+      [sequelize.literal(`AVG(CASE WHEN return_station_id = ${req.params.id} THEN covered_distance END)`), 'avg_journey_finished'],
+      [sequelize.literal(`COUNT(CASE WHEN return_station_id = ${req.params.id} THEN 1 END)`), 'n_finished'],
+    ]
+  })
 
-  res.json({ ...station, n_starts, n_ends });
-
+  res.json({ ...station, ...stats});
 });
 
 

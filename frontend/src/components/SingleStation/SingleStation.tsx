@@ -25,6 +25,8 @@ const SingleStation = () => {
     )
   }
 
+
+
   return (
     <article className="Main-content" >
       <div className="Single-station">
@@ -33,19 +35,19 @@ const SingleStation = () => {
           <table className="Stats">
             <tr className="Stats-row">
               <td>Journeys started</td>
-              <td>{station.n_starts}</td>
+              <td>{station.n_started}</td>
             </tr>
             <tr className="Stats-row">
               <td>Journeys finished</td>
-              <td>{station.n_ends}</td>
-            </tr>
-            <tr className="Stats-row">
-              <td>Average distance of jounrey ending at station</td>
-              <td>todo</td>
+              <td>{station.n_finished}</td>
             </tr>
             <tr className="Stats-row">
               <td>Average distance of jounrey starting at station</td>
-              <td>todo</td>
+              <td>{Math.round(station.avg_journey_started)}</td>
+            </tr>
+            <tr className="Stats-row">
+              <td>Average distance of jounrey ending at station</td>
+              <td>{Math.round(station.avg_journey_finished)}</td>
             </tr>
           </table>
           <div className="Map">
