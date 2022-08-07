@@ -63,6 +63,15 @@ tr {
 
 tr:nth-child(odd) {background: whitesmoke}
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .Page-count {
   padding-left: 1rem;
   padding-right: 1rem;

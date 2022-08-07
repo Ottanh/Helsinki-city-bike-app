@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { StationInterface } from "../../types";
 
 interface Props {
@@ -9,7 +10,11 @@ const Station = ({ station }: Props) => {
     <tr className="Station-row">
       <td>{station.id}</td>
       <td>{station.fid}</td>
-      <td>{station.name}</td>
+      <td>
+        <Link to={`/stations/${station.id}`}>
+          {station.name}
+        </Link>
+      </td>
       <td>{station.osoite}</td>
       <td>{station.kaupunki}</td>
       <td>{station.operaattor}</td>

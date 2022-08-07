@@ -43,12 +43,12 @@ const SingleStation = () => {
                 <td>{station.n_finished}</td>
               </tr>
               <tr className="Stats-row">
-                <td>Average distance of jounrey starting at station</td>
-                <td>{Math.round(station.avg_journey_started)}</td>
+                <td>Average distance of journey starting at station</td>
+                <td>{Math.round(station.avg_journey_started)} m</td>
               </tr>
               <tr className="Stats-row">
-                <td>Average distance of jounrey ending at station</td>
-                <td>{Math.round(station.avg_journey_finished)}</td>
+                <td>Average distance of journey ending at station</td>
+                <td>{Math.round(station.avg_journey_finished)} m</td>
               </tr>
             </tbody>
           </table>
