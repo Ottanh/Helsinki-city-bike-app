@@ -26,24 +26,26 @@ const JourneyList = () => {
 
   return (
     <>
-      <table className="Journey-list">
-        <thead>
-          <tr className="Header-row">
-            <th>ID</th>
-            <th>Departure</th>
-            <th>Departure station</th>
-            <th>Return</th>
-            <th>Return station</th>
-            <th>Covered distance</th>
-            <th>Duration</th>
-          </tr>
-        </thead>
-        <tbody>
-          {journeys.map((journey: JourneyInterface) => (
-            <Journey key={journey.id} journey={journey} />
-          ))}
-        </tbody>
-      </table>
+      <article className="Main-content">
+        <table className="Journey-list">
+          <thead>
+            <tr className="Header-row">
+              <th>ID</th>
+              <th>Departure</th>
+              <th>Departure station</th>
+              <th>Return</th>
+              <th>Return station</th>
+              <th>Covered distance</th>
+              <th>Duration</th>
+            </tr>
+          </thead>
+          <tbody>
+            {journeys.map((journey: JourneyInterface) => (
+              <Journey key={journey.id} journey={journey} />
+            ))}
+          </tbody>
+        </table>
+      </article>
       <div className="Page-controls">
         <button onClick={previous}>prev</button>
         <span className="Page-count">{page}</span>

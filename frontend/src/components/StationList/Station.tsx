@@ -1,5 +1,4 @@
 import { StationInterface } from "../../types";
-import './Station.css';
 
 interface Props {
   station: StationInterface

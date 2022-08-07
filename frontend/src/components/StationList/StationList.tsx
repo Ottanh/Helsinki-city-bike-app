@@ -4,6 +4,7 @@ import { StationInterface } from "../../types";
 import Station from "./Station";
 
 
+
 const StationList = () => {
   const [stations, setStations] = useState([]);
   const [page, setPage] = useState(0);
@@ -27,23 +28,25 @@ const StationList = () => {
 
   return (
     <>
-      <table className="Station-list">
-        <thead>
-          <tr className="Header-row">
-            <th>ID</th>
-            <th>FID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>City</th>
-            <th>Operator</th>
-          </tr>
-        </thead>
-        <tbody>
-          {stations.map((station: StationInterface) => (
-            <Station key={station.id} station={station} />
-          ))}
-        </tbody>
-      </table>
+      <article className="Main-content">
+        <table className="Station-list">
+          <thead>
+            <tr className="Header-row">
+              <th>ID</th>
+              <th>FID</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>City</th>
+              <th>Operator</th>
+            </tr>
+          </thead>
+          <tbody>
+            {stations.map((station: StationInterface) => (
+              <Station key={station.id} station={station} />
+            ))}
+          </tbody>
+        </table>
+      </article>
       <div className="Page-controls">
         <button onClick={previous}>prev</button>
         <span className="Page-count">{page}</span>

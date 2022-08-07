@@ -1,5 +1,4 @@
 import { JourneyInterface } from "../../types";
-import './Journey.css';
 
 interface Props {
   journey: JourneyInterface

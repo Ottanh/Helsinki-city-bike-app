@@ -4,12 +4,15 @@ import './App.css';
 import StationList from "./components/StationList/StationList";
 import Menu from "./components/Menu/Menu";
 import SingleStation from "./components/SingleStation/SingleStation";
-
+import { FaBicycle } from 'react-icons/fa';
 
 function App() {
   return (
     <div className="App">
-      <h1>HS city bike app</h1>
+      <div className="Title-and-logo">
+        <FaBicycle className="Logo" size={70}/>
+        <h1>HS City Bike App</h1>
+      </div>
       <Menu />
       <Routes>
         <Route path="/" element={<Navigate to='/journeys' />} />

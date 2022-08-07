@@ -1,11 +1,24 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Menu.css';
 
 const Menu = () => {
   return (
     <div className="Menu">
-      <Link className="Journey-link" to="/journeys" >Journeys</Link>
-      <Link className="Station-link" to="/stations" >Stations</Link>
+      <NavLink 
+        className={({ isActive }) =>
+          isActive ? 'Journey-link-active' : 'Journey-link'
+        } 
+        to="/journeys" 
+      >
+        Journeys
+      </NavLink>
+      <NavLink className={({ isActive }) =>
+          isActive ? 'Station-link-active' : 'Station-link'
+        } 
+        to="/stations" 
+      >
+        Stations
+      </NavLink>
     </div>
   );
 }

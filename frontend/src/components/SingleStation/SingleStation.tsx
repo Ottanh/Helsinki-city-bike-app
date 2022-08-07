@@ -30,7 +30,7 @@ const SingleStation = () => {
   return (
     <article className="Main-content" >
       <div className="Single-station">
-        <span id="Station-name">{station.name}</span>
+        <h2>{station.name}</h2>
         <div className="Upper-row">
           <table className="Stats">
             <tbody>

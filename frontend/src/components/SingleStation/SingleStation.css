@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 50%;
+  width: 100%;
   font-size: x-large;
   max-width: 1200px;
 }
+
+
 
 #Station-name {
   font-weight: bold;
@@ -33,18 +35,3 @@
   width: 50%;
 }
 
-
-td {
-  text-align: center;
-  padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.Stats-row {
-  border: 1px solid;
-  border-color: rgba(108, 123, 149, 0.5);
-  height: 3rem;
-}
-
-.Stats-row:nth-child(odd) {background: whitesmoke}
