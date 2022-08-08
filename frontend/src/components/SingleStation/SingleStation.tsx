@@ -3,29 +3,41 @@ import { useEffect, useState } from "react";
 import { StationInterface } from "../../types";
 import { useParams } from "react-router-dom";
 import './SingleStation.css';
+import ErrorView from "../ErrorView/ErrorView";
+import Loading from "../Loading/Loading";
 
 
 const SingleStation = () => {
   const { id } = useParams();
   const [station, setStation] = useState<StationInterface>();
+  const [error, setError] = useState<string | undefined>();
   useEffect(() => {
     axios.get(`http://localhost:3001/api/station/${id}`)
       .then((res => {
         setStation(res.data);
       }))
+      .catch((error) => {
+        if (error.response) {
+          setError(error.response.status)
+        } else if (error.request) {
+          setError('No response received')
+        } else {
+          setError('An error happened')
+        }
+      });
   },[])
 
-  const mapURL = `https://www.google.com/maps/embed/v1/place?key=AIzaSyCLJj8ekLBNrM1pJg5B48D8GPtUDERWlzk&q=${station?.osoite}`
+  const mapURL = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_MAPS_API_KEY}&q=${station?.osoite}`
 
-  if(!station){
-    return(
-      <div>
-        Station not found
-      </div>
-    )
+  if(error){
+    return <ErrorView error={error} />;
+    
   }
 
 
+  if(!station){
+    return <Loading />;
+  }
 
   return (
     <article className="Main-content" >

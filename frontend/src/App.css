@@ -1,4 +1,14 @@
+body {
+  height: 100vh;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
+}
+
 .App {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +33,9 @@ h1 {
 .Main-content {
   max-width: 1200px;
   min-width: 850px;
+  display: flex;
+  justify-content: center;
+  flex: 1;
 }
 
 .Journey-list, .Station-list {
@@ -43,7 +56,6 @@ td {
   padding: 5px;
   padding-left: 10px;
   padding-right: 10px;
-  height: 2.8rem;
 }
 
 th {
@@ -78,7 +90,7 @@ a:hover {
 }
 
 .Page-controls {
-  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 button {
