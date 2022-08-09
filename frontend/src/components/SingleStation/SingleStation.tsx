@@ -34,7 +34,6 @@ const SingleStation = () => {
     
   }
 
-
   if(!station){
     return <Loading />;
   }
@@ -42,9 +41,10 @@ const SingleStation = () => {
   return (
     <article className="Main-content" >
       <div className="Single-station">
-        <h2>{station.name}</h2>
         <div className="Upper-row">
-          <table className="Stats">
+          <div className="Stats">
+          <h2 id="station-name">{station.name} Station</h2>
+          <table className="Stats-table">
             <tbody>
               <tr className="Stats-row">
                 <td>Journeys started</td>
@@ -64,6 +64,7 @@ const SingleStation = () => {
               </tr>
             </tbody>
           </table>
+          </div>
           <div className="Map">
             <iframe
               width="100%"
