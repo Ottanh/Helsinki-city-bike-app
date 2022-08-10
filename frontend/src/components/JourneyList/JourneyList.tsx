@@ -58,10 +58,7 @@ const JourneyList = () => {
         <table className="Journey-list">
           <thead>
             <tr className="Header-row">
-              <th>ID</th>
-              <th>Departure</th>
               <th>Departure station</th>
-              <th>Return</th>
               <th>Return station</th>
               <th>Covered distance</th>
               <th>Duration</th>

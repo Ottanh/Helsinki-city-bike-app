@@ -8,8 +8,6 @@ interface Props {
 const Station = ({ station }: Props) => {
   return (
     <tr className="Station-row">
-      <td>{station.id}</td>
-      <td>{station.fid}</td>
       <td>
         <Link to={`/stations/${station.id}`}>
           {station.name}

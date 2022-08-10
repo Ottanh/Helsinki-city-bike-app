@@ -63,8 +63,6 @@ const StationList = () => {
         <table className="Station-list">
           <thead>
             <tr className="Header-row">
-              <th>ID</th>
-              <th>FID</th>
               <th>Name</th>
               <th>Address</th>
               <th>City</th>
