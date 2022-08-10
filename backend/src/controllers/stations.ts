@@ -46,7 +46,7 @@ router.get('/:id/pop_departure', async (req, res) => {
   }
 
   const popDepartureStations = await sequelizeInstance.query(`
-    SELECT stations.name, stations.adress, stations.kaupunki, n_journeys
+    SELECT stations.*, n_journeys
     FROM stations JOIN (
       SELECT departure_station_id, COUNT(departure_station_id) as n_journeys
       FROM journeys
@@ -71,7 +71,7 @@ router.get('/:id/pop_return', async (req, res) => {
   }
 
   const popReturnStations = await sequelizeInstance.query(`
-    SELECT stations.name, stations.adress, stations.kaupunki, n_journeys
+    SELECT stations.*, n_journeys
     FROM stations JOIN (
       SELECT return_station_id, COUNT(return_station_id) as n_journeys
       FROM journeys

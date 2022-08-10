@@ -27,3 +27,5 @@ export interface StationInterface {
   avg_journey_started: number;
   avg_journey_finished: number;
 }
+
+export type StationJourneys = StationInterface & { n_journeys: number};
