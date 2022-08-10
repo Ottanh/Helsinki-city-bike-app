@@ -1,3 +1,4 @@
+import './StationMap.css';
 
 interface Props {
   mapURL: string;

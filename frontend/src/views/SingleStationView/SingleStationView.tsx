@@ -4,7 +4,9 @@ import { StationInterface } from "../../types";
 import { useParams } from "react-router-dom";
 import ErrorView from "../../components/ErrorView/ErrorView";
 import Loading from "../../components/Loading/Loading";
-import SingleStation from "../../components/SingleStation/SingleStation";
+import StationMap from "../../components/StationMap/StationMap";
+import StationStats from "../../components/StationStats/StationStats";
+import './SingleStationView.css';
 
 
 const SingleStationView = () => {
@@ -38,7 +40,22 @@ const SingleStationView = () => {
     return <Loading />;
   }
 
-  return <SingleStation station={station} mapURL={mapURL} />;
+  return (
+    <section className="Main-content" >
+      <div className="Single-station">
+        <div className="Upper-row">
+          <StationStats station={station}/>
+          <StationMap mapURL={mapURL} />
+        </div>
+        <div className="Bottom-row">
+          <div className="Starts">
+          </div>
+          <div className="Ends">
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default SingleStationView;
