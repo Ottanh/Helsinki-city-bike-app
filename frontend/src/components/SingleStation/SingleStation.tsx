@@ -1,4 +1,5 @@
 import { StationInterface } from '../../types';
+import StationMap from '../StationMap/StationMap';
 import './SingleStation.css';
 
 interface Props {
@@ -34,17 +35,7 @@ const SingleStation = ({ station, mapURL }: Props) => {
             </tbody>
           </table>
           </div>
-          <div className="Map">
-            <iframe
-              width="100%"
-              height="100%"
-              frameBorder="0" 
-              style={{border:0}}
-              referrerPolicy="no-referrer-when-downgrade"
-              src={mapURL}
-              allowFullScreen>
-            </iframe>
-          </div>
+          <StationMap mapURL={mapURL} />
         </div>
         <div className="Bottom-row">
           <div className="Starts">

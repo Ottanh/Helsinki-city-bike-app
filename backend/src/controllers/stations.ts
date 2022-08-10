@@ -36,40 +36,7 @@ router.get('/:id', async (req, res) => {
     ]
   })
 
-  
-  const popReturnStations = await sequelizeInstance.query(`
-    SELECT stations.name, n_journeys
-    FROM stations JOIN (
-      SELECT return_station_id, COUNT(return_station_id) as n_journeys
-      FROM journeys
-      WHERE departure_station_id=${req.params.id}
-      GROUP BY return_station_id
-      ORDER BY n_journeys DESC
-      LIMIT 5
-    ) as J ON stations.id = J.return_station_id
-    ORDER BY n_journeys DESC`,
-    {
-      type: QueryTypes.SELECT
-    }
-  )
-
-  const popStartStations = await sequelizeInstance.query(`
-    SELECT stations.name, n_journeys
-    FROM stations JOIN (
-      SELECT departure_station_id, COUNT(departure_station_id) as n_journeys
-      FROM journeys
-      WHERE return_station_id=${req.params.id}
-      GROUP BY departure_station_id
-      ORDER BY n_journeys DESC
-      LIMIT 5
-    ) as J ON stations.id = J.departure_station_id
-    ORDER BY n_journeys DESC`,
-    {
-      type: QueryTypes.SELECT
-    }
-  )
-
-  res.json({ ...station, ...stats, popReturnStations, popStartStations});
+  res.json({ ...station, ...stats });
 });
 
 router.get('/:id/pop_departure', async (req, res) => {
