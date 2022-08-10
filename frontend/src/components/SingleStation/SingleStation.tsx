@@ -1,43 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { StationInterface } from "../../types";
-import { useParams } from "react-router-dom";
+import { StationInterface } from '../../types';
 import './SingleStation.css';
-import ErrorView from "../ErrorView/ErrorView";
-import Loading from "../Loading/Loading";
 
+interface Props {
+  station: StationInterface
+  mapURL: string
+}
 
-const SingleStation = () => {
-  const { id } = useParams();
-  const [station, setStation] = useState<StationInterface>();
-  const [error, setError] = useState<string | undefined>();
-  useEffect(() => {
-    axios.get(`http://localhost:3001/api/station/${id}`)
-      .then((res => {
-        setStation(res.data);
-      }))
-      .catch((error) => {
-        if (error.response) {
-          setError(error.response.status)
-        } else if (error.request) {
-          setError('No response received')
-        } else {
-          setError('An error happened')
-        }
-      });
-  },[])
-
-  const mapURL = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_MAPS_API_KEY}&q=${station?.osoite}`
-
-  if(error){
-    return <ErrorView error={error} />;
-    
-  }
-
-  if(!station){
-    return <Loading />;
-  }
-
+const SingleStation = ({ station, mapURL }: Props) => {
   return (
     <article className="Main-content" >
       <div className="Single-station">
