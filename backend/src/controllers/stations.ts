@@ -69,9 +69,57 @@ router.get('/:id', async (req, res) => {
     }
   )
 
-
   res.json({ ...station, ...stats, popReturnStations, popStartStations});
 });
 
+router.get('/:id/pop_departure', async (req, res) => {
+  const station = await Station.findByPk(req.params.id, { raw: true });
+  if(!station){
+    res.status(404).end();
+  }
+
+  const popDepartureStations = await sequelizeInstance.query(`
+    SELECT stations.name, stations.adress, stations.kaupunki, n_journeys
+    FROM stations JOIN (
+      SELECT departure_station_id, COUNT(departure_station_id) as n_journeys
+      FROM journeys
+      WHERE return_station_id=${req.params.id}
+      GROUP BY departure_station_id
+      ORDER BY n_journeys DESC
+      LIMIT 5
+    ) as J ON stations.id = J.departure_station_id
+    ORDER BY n_journeys DESC`,
+    {
+      type: QueryTypes.SELECT
+    }
+  )
+
+  res.json(popDepartureStations);
+});
+
+router.get('/:id/pop_return', async (req, res) => {
+  const station = await Station.findByPk(req.params.id, { raw: true });
+  if(!station){
+    res.status(404).end();
+  }
+
+  const popReturnStations = await sequelizeInstance.query(`
+    SELECT stations.name, stations.adress, stations.kaupunki, n_journeys
+    FROM stations JOIN (
+      SELECT return_station_id, COUNT(return_station_id) as n_journeys
+      FROM journeys
+      WHERE departure_station_id=${req.params.id}
+      GROUP BY return_station_id
+      ORDER BY n_journeys DESC
+      LIMIT 5
+    ) as J ON stations.id = J.return_station_id
+    ORDER BY n_journeys DESC`,
+    {
+      type: QueryTypes.SELECT
+    }
+  )
+
+  res.json(popReturnStations);
+});
 
 export default router;
