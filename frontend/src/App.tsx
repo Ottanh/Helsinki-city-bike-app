@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import JourneyList from "./components/JourneyList/JourneyList";
 import './App.css';
 import Menu from "./components/Menu/Menu";
 import SingleStation from "./components/SingleStation/SingleStation";
 import { FaBicycle } from 'react-icons/fa';
-import StationListView from "./views/StationList/StationListView";
+import StationListView from "./views/StationListView/StationListView";
+import JourneyListView from "./views/JourneyListView/JourneyListView";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
       <Menu />
       <Routes>
         <Route path="/" element={<Navigate to='/journeys' />} />
-        <Route path="journeys" element={<JourneyList />} />
+        <Route path="journeys" element={<JourneyListView />} />
         <Route path="stations" element={<StationListView />} />
         <Route path="/stations/:id" element={<SingleStation />} />
       </Routes>

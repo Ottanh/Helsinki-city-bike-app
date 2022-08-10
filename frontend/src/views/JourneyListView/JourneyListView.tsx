@@ -1,21 +1,19 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorView from "../../components/ErrorView/ErrorView";
+import JourneyList from "../../components/JourneyList/JourneyList";
 import Loading from "../../components/Loading/Loading";
 import PageControls from "../../components/PageControls/PageControls";
-import StationList from "../../components/StationList/StationList";
-import { StationInterface } from "../../types";
+import { JourneyInterface } from "../../types";
 
-
-const StationListView = () => {
-  const [stations, setStations] = useState<StationInterface[]>();
+const JourneyListView = () => {
+  const [journeys, setJourneys] = useState<JourneyInterface[]>();
   const [page, setPage] = useState(0);
   const [error, setError] = useState<string | undefined>();
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/station?page=${page}&size=10`)
+    axios.get(`http://localhost:3001/api/journey?page=${page}&size=10`)
       .then((res => {
-        setStations(res.data);
-        console.log(res.data);
+        setJourneys(res.data);
       }))
       .catch((error) => {
         if (error.response) {
@@ -29,23 +27,19 @@ const StationListView = () => {
   },[page])
 
   if(error){
-    return(
-      <ErrorView error={error} />
-    )
+    return <ErrorView error={error} />;
   }
 
-  if(!stations || stations?.length === 0){
-    return(
-      <>
-      <Loading />
-      <PageControls page={page} setPage={setPage} />
-    </>
-    )
+  if(!journeys || journeys.length === 0){
+    return <Loading />;
   }
 
   return (
-    <StationList stations={stations}/>
+    <>
+      <JourneyList journeys={journeys} />
+      <PageControls page={page} setPage={setPage} />
+    </>
   );
 }
 
-export default StationListView;
+export default JourneyListView;
