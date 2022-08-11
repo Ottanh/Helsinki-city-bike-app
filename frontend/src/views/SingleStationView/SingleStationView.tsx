@@ -17,6 +17,7 @@ const SingleStationView = () => {
   const [returnStations, setReturnStations] = useState<StationJourneys[]>([]);
   const [error, setError] = useState<string | undefined>();
   useEffect(() => {
+    setStation(undefined);
     axios.get(`http://localhost:3001/api/station/${id}`)
       .then((res => {
         setStation(res.data);
@@ -62,7 +63,6 @@ const SingleStationView = () => {
 
   if(error){
     return <Error error={error} />;
-    
   }
 
   if(!station){
