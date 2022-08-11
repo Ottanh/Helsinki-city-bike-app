@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import PopularStations from './PopularStations';
+import StationList from './StationList';
 
 const station = {
     id: 1,
@@ -12,7 +12,7 @@ const station = {
     address: 'address1',
     kaupunki: 'city1',
     stad: 'city1',
-    operaattor: null,
+    operaattor: 'testOperator',
     kapasiteet: 10,
     x: 1,
     y: 1,
@@ -20,40 +20,39 @@ const station = {
     n_started: 10,
     avg_journey_started: 10,
     avg_journey_finished: 10,
-    n_journeys: 100
   }
 
 
 test('renders headers', () => {
   render(
     <MemoryRouter>
-      <PopularStations stations={[station]}/>
+      <StationList stations={[station]}/>
     </MemoryRouter>
   );
 
   const name = screen.getByText('Name');
   const address = screen.getByText('Address');
   const city = screen.getByText('City');
-  const journeys = screen.getByText('Journeys');
+  const operator = screen.getByText('Operator');
   expect(name).toBeInTheDocument();
   expect(address).toBeInTheDocument();
   expect(city).toBeInTheDocument();
-  expect(journeys).toBeInTheDocument();
+  expect(operator).toBeInTheDocument();
 });
 
 test('renders station', () => {
   render(
     <MemoryRouter>
-      <PopularStations stations={[station]}/>
+      <StationList stations={[station]}/>
     </MemoryRouter>
   );
 
   const name = screen.getByText('station1');
   const address = screen.getByText('address1');
   const city = screen.getByText('city1');
-  const journeys = screen.getByText('100');
+  const operator = screen.getByText('testOperator');
   expect(name).toBeInTheDocument();
   expect(address).toBeInTheDocument();
   expect(city).toBeInTheDocument();
-  expect(journeys).toBeInTheDocument();
+  expect(operator).toBeInTheDocument();
 });
