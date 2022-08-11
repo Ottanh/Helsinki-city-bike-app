@@ -19,7 +19,7 @@ export interface StationInterface {
   kaupunki: string | null;
   stad: string | null;
   operaattor: string | null;
-  kapasiteet: string;
+  kapasiteet: number;
   x: number;
   y: number;
   n_finished: number;
