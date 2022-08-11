@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { StationInterface, StationJourneys } from "../../types";
 import { useParams } from "react-router-dom";
-import ErrorView from "../../components/ErrorView/ErrorView";
+import Error from "../../components/Error/Error";
 import Loading from "../../components/Loading/Loading";
 import StationMap from "../../components/StationMap/StationMap";
 import StationStats from "../../components/StationStats/StationStats";
@@ -61,7 +61,7 @@ const SingleStationView = () => {
   const mapURL = `https://www.google.com/maps/embed/v1/place?key=${process.env.REACT_APP_MAPS_API_KEY}&q=${station?.osoite}`
 
   if(error){
-    return <ErrorView error={error} />;
+    return <Error error={error} />;
     
   }
 

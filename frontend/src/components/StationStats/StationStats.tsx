@@ -8,7 +8,7 @@ interface Props {
 const StationStats = ({ station }: Props) => {
   return (
     <section className="Stats">
-      <h2 id="station-name">{station.name} Station</h2>
+      <h2 id="station-name">{station.name}</h2>
       <table className="Stats-table">
         <tbody>
           <tr className="Stats-row">

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ErrorView from "../../components/ErrorView/ErrorView";
+import Error from "../../components/Error/Error";
 import JourneyList from "../../components/JourneyList/JourneyList";
 import Loading from "../../components/Loading/Loading";
 import PageControls from "../../components/PageControls/PageControls";
@@ -27,7 +27,7 @@ const JourneyListView = () => {
   },[page])
 
   if(error){
-    return <ErrorView error={error} />;
+    return <Error error={error} />;
   }
 
   if(!journeys || journeys.length === 0){

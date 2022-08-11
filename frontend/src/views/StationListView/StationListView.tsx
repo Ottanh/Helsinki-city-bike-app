@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ErrorView from "../../components/ErrorView/ErrorView";
+import Error from "../../components/Error/Error";
 import Loading from "../../components/Loading/Loading";
 import PageControls from "../../components/PageControls/PageControls";
 import StationList from "../../components/StationList/StationList";
@@ -30,7 +30,7 @@ const StationListView = () => {
 
   if(error){
     return(
-      <ErrorView error={error} />
+      <Error error={error} />
     )
   }
 
