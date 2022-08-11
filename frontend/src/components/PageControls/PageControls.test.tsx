@@ -36,7 +36,6 @@ test('changes page', async () => {
   rerender(<PageControls page={page} setPage={setPage} />);
   const pagenumber1 = screen.getByText('1');
   expect(pagenumber1).toBeInTheDocument();
-
   // previous page
   await user.click(prev);
   rerender(<PageControls page={page} setPage={setPage} />);
