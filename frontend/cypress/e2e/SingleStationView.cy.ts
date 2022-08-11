@@ -11,13 +11,22 @@ describe('Journey list view', () => {
   })
 
   it('can link to popular departure station', () => {
-    cy.contains('Unioninkatu').eq(0).click();
-    cy.url().should('eq', 'http://localhost:3000/stations/11')
+    cy.contains('Hernesaarenranta').click();
+    cy.url().should('eq', 'http://localhost:3000/stations/65')
   })
 
   it('can link to popular return station', () => {
-    cy.contains('Unioninkatu').eq(1).click();
-    cy.url().should('eq', 'http://localhost:3000/stations/11')
+    cy.contains('Kanavaranta').click();
+    cy.url().should('eq', 'http://localhost:3000/stations/12')
   })
 
+  it('can link to journey list view', () => {
+    cy.contains('Journeys').click();
+    cy.url().should('eq', 'http://localhost:3000/journeys')
+  })
+
+  it('can link to station list view', () => {
+    cy.contains('Stations').click();
+    cy.url().should('eq', 'http://localhost:3000/stations')
+  })
 })
