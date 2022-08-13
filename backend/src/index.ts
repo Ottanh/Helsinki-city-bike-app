@@ -5,11 +5,15 @@ import './models/relationships';
 import journeyRouter from './controllers/journey';
 import stationRouter from './controllers/stations';
 import cors from 'cors';
+import path from 'path';
 
 const app = express();
 app.use(express.json());
-
 app.use(cors());
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.resolve(__dirname, '../../frontend/build')));
+}
 
 app.get('/ping', (_req, res) => {
   console.log('someone pinged here');
