@@ -9,14 +9,13 @@ phases:
         - npm --prefix ./backend install
   pre_build:
     commands:
-        - npm --prefix ./frontend lint
-        - npm --prefix ./backend lint
+        - npm --prefix ./frontend run lint
+        - npm --prefix ./backend run lint
         - npm --prefix ./frontend test
   build:
     commands:
         - npm --prefix ./frontend run build
         - npm --prefix ./backend run tsc
-
 
 
 artifacts:
