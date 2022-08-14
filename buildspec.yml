@@ -23,6 +23,6 @@ artifacts:
     - appspec.yml
     - frontend/node_modules/**/*
     - frontend/build/**/*
-    - backendend/node_modules/**/*
-    - backendend/build/**/*
+    - backend/node_modules/**/*
+    - backend/build/**/*
     - scripts/*
