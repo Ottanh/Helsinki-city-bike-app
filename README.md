@@ -5,8 +5,8 @@ Solita Dev Academy pre-assignment.
 # URL
 http://ec2-16-171-62-148.eu-north-1.compute.amazonaws.com
 
-## Required env variables
-
+## Config
+Separate .env files are required for backend and frontend with following env variables.
 #### Frontend   
 `REACT_APP_MAPS_API_KEY` Google maps API key. App can run without it but maps won't be displayed.   
 #### Backend    
