@@ -5,7 +5,7 @@ import Journey from '../models/journey';
 import Station from '../models/station';
 const router = express.Router();
 import { getPagination } from '../util/pagination';
-import { sequelize as sequelizeInstance } from '../util/db'
+import { sequelize as sequelizeInstance } from '../util/db';
 
 
 router.get('/', async (req, res) => {
@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
       [sequelize.literal(`AVG(CASE WHEN return_station_id = ${req.params.id} THEN covered_distance END)`), 'avg_journey_finished'],
       [sequelize.literal(`COUNT(CASE WHEN return_station_id = ${req.params.id} THEN 1 END)`), 'n_finished'],
     ]
-  })
+  });
 
   res.json({ ...station, ...stats });
 });
@@ -59,7 +59,7 @@ router.get('/:id/pop_departure', async (req, res) => {
     {
       type: QueryTypes.SELECT
     }
-  )
+  );
 
   res.json(popDepartureStations);
 });
@@ -84,7 +84,7 @@ router.get('/:id/pop_return', async (req, res) => {
     {
       type: QueryTypes.SELECT
     }
-  )
+  );
 
   res.json(popReturnStations);
 });
