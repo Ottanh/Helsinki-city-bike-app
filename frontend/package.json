@@ -19,7 +19,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint ./src/**/*.{ts,tsx}",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open --config baseUrl=http://localhost:3000",
+    "test:e2e": "cypress run --e2e --config baseUrl=http://localhost:3001"
   },
   "eslintConfig": {
     "extends": [

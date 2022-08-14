@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-describe('Journey list view', () => {
+describe('Station list view', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/stations')
+    cy.visit('/stations')
   })
 
   it('renders station table', () => {
@@ -26,11 +26,11 @@ describe('Journey list view', () => {
 
   it('can link to single station view', () => {
     cy.contains('Hanasaari').click();
-    cy.url().should('eq', 'http://localhost:3000/stations/501')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations/501`)
   })
 
   it('can link to journey list view', () => {
     cy.contains('Journeys').click();
-    cy.url().should('eq', 'http://localhost:3000/journeys')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/journeys`)
   })
 })

@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-describe('Journey list view', () => {
+describe('Signle station view', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/stations/1')
+    cy.visit('/stations/1')
   })
 
   it('renders tables and map', () => {
@@ -12,21 +12,21 @@ describe('Journey list view', () => {
 
   it('can link to popular departure station', () => {
     cy.contains('Hernesaarenranta').click();
-    cy.url().should('eq', 'http://localhost:3000/stations/65')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations/65`)
   })
 
   it('can link to popular return station', () => {
     cy.contains('Kanavaranta').click();
-    cy.url().should('eq', 'http://localhost:3000/stations/12')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations/12`)
   })
 
   it('can link to journey list view', () => {
     cy.contains('Journeys').click();
-    cy.url().should('eq', 'http://localhost:3000/journeys')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/journeys`)
   })
 
   it('can link to station list view', () => {
     cy.contains('Stations').click();
-    cy.url().should('eq', 'http://localhost:3000/stations')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations`)
   })
 })

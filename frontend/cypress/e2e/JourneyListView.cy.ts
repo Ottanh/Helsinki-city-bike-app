@@ -2,7 +2,7 @@
 
 describe('Journey list view', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000')
+    cy.visit('')
   })
 
   it('renders journey table', () => {
@@ -26,16 +26,16 @@ describe('Journey list view', () => {
 
   it('can link to departure station', () => {
     cy.contains('Laajalahden aukio').click();
-    cy.url().should('eq', 'http://localhost:3000/stations/94')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations/94`)
   })
 
   it('can link to return station', () => {
     cy.contains('Teljäntie').click();
-    cy.url().should('eq', 'http://localhost:3000/stations/100')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations/100`)
   })
 
   it('can link to station list view', () => {
     cy.contains('Stations').click();
-    cy.url().should('eq', 'http://localhost:3000/stations')
+    cy.url().should('eq', `${Cypress.config().baseUrl}/stations`)
   })
 })
