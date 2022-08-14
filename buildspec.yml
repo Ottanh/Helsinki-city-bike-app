@@ -11,7 +11,7 @@ phases:
     commands:
         - npm --prefix ./frontend run lint
         - npm --prefix ./backend run lint
-        - npm --prefix ./frontend test
+        - npm --prefix ./frontend test -- --watchAll=false
   build:
     commands:
         - npm --prefix ./frontend run build
