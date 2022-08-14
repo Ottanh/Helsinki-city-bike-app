@@ -4,6 +4,7 @@ import Error from "../../components/Error/Error";
 import JourneyList from "../../components/JourneyList/JourneyList";
 import Loading from "../../components/Loading/Loading";
 import PageControls from "../../components/PageControls/PageControls";
+import { BACKEND_URI } from "../../config";
 import { JourneyInterface } from "../../types";
 
 const JourneyListView = () => {
@@ -11,7 +12,7 @@ const JourneyListView = () => {
   const [page, setPage] = useState(0);
   const [error, setError] = useState<string | undefined>();
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/journey?page=${page}&size=10`)
+    axios.get(`${BACKEND_URI}/api/journey?page=${page}&size=10`)
       .then((res => {
         setJourneys(res.data);
       }))

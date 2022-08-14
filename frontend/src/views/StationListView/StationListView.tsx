@@ -4,6 +4,7 @@ import Error from "../../components/Error/Error";
 import Loading from "../../components/Loading/Loading";
 import PageControls from "../../components/PageControls/PageControls";
 import StationList from "../../components/StationList/StationList";
+import { BACKEND_URI } from "../../config";
 import { StationInterface } from "../../types";
 
 
@@ -12,7 +13,7 @@ const StationListView = () => {
   const [page, setPage] = useState(0);
   const [error, setError] = useState<string | undefined>();
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/station?page=${page}&size=10`)
+    axios.get(`${BACKEND_URI}/api/station?page=${page}&size=10`)
       .then((res => {
         setStations(res.data);
         console.log(res.data);

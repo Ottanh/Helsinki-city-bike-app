@@ -8,6 +8,7 @@ import StationMap from "../../components/StationMap/StationMap";
 import StationStats from "../../components/StationStats/StationStats";
 import './SingleStationView.css';
 import PopularStations from "../../components/PopularStations/PopularStations";
+import { BACKEND_URI } from "../../config";
 
 
 const SingleStationView = () => {
@@ -18,7 +19,7 @@ const SingleStationView = () => {
   const [error, setError] = useState<string | undefined>();
   useEffect(() => {
     setStation(undefined);
-    axios.get(`http://localhost:3001/api/station/${id}`)
+    axios.get(`${BACKEND_URI}/api/station/${id}`)
       .then((res => {
         setStation(res.data);
       }))
