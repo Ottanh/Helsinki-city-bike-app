@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+        - npm --prefix ./frontend install
+        - npm --prefix ./backend install
+  pre_build:
+    commands:
+        - npm --prefix ./frontend lint
+        - npm --prefix ./backend lint
+        - npm --prefix ./frontend test
+  build:
+    commands:
+        - npm --prefix ./frontend run build
+        - npm --prefix ./backend run tsc
+
+
+
+artifacts:
+  files:
+    - /frontend/appspec.yml
+    - /backend/appspec.yml
+    - /frontend/node_modules/**/*
+    - /frontend/build/**/*
+    - /backendend/node_modules/**/*
+    - /backendend/build/**/*
+    - scripts/*
