@@ -13,6 +13,9 @@ app.use(cors());
 
 if(process.env.NODE_ENV === 'production'){
   app.use(express.static(path.resolve(__dirname, '../../frontend/build')));
+  app.use('/journeys', express.static(path.resolve(__dirname, '../../frontend/build')));
+  app.use('/stations', express.static(path.resolve(__dirname, '../../frontend/build')));
+  app.use('/stations/*', express.static(path.resolve(__dirname, '../../frontend/build')));
 }
 
 app.get('/ping', (_req, res) => {
