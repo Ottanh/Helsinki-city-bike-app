@@ -31,9 +31,10 @@ npm run test:e2e
 ```   
 
 ## Tech stack
-#### Frontend 
-React app with axios handling requests.  
-Unit testing with Jest and testing-library. E2e testing with cypress.
-#### Backend 
-Nodejs and Postgresql with sequelize.
+<a href="https://www.postgresql.org/" title="PostgreSQL"><img src="https://github.com/get-icon/geticon/raw/master/icons/postgresql.svg" alt="PostgreSQL" width="50px" height="50px"></a> &nbsp; &nbsp; <a href="https://expressjs.com/" title="Express"><img src="https://github.com/get-icon/geticon/raw/master/icons/express.svg" alt="Express" width="50px" height="50px"></a> &nbsp; &nbsp; <a href="https://reactjs.org/" title="React"><img src="https://github.com/get-icon/geticon/raw/master/icons/react.svg" alt="React" width="50px" height="50px"></a> &nbsp; &nbsp; <a href="https://nodejs.org/" title="Node.js"><img src="https://github.com/get-icon/geticon/raw/master/icons/nodejs-icon.svg" alt="Node.js" width="50px" height="50px"></a>    
+***PostgreSQL, Express, React and Node.js***   
+Testing is done with Jest and Cypress.    
+Deployed on aws ec2.
+
+
 
