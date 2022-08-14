@@ -21,8 +21,8 @@ phases:
 artifacts:
   files:
     - appspec.yml
-    - /frontend/node_modules/**/*
-    - /frontend/build/**/*
-    - /backendend/node_modules/**/*
-    - /backendend/build/**/*
+    - frontend/node_modules/**/*
+    - frontend/build/**/*
+    - backendend/node_modules/**/*
+    - backendend/build/**/*
     - scripts/*
